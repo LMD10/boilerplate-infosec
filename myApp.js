@@ -17,6 +17,22 @@ app.use(helmet.contentSecurityPolicy({
   }
 })
 );
+app.use(helmet({
+  frameguard: {
+    action: 'deny'
+  },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ['trusted-cdn.com'],
+    }
+  },
+  hsts: {
+    maxAge: ninetyDaysInSeconds,
+    force: true,
+  },
+  noCache: true
+}))
 
 
 
